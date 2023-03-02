@@ -1,15 +1,15 @@
-# Getting Started with Create React App
+# 🚀 Welcome to your new awesome project!
 
-This is my React project to display Weather information based on selected City
+This project has been created using **webpack-cli**, you can now run
 
-## Available Scripts
+```
+npm run build
+```
 
-In the project directory, you can run:
+or
 
-### `npm start`
+```
+yarn build
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+to bundle your application
