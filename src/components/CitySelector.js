@@ -23,7 +23,7 @@ function CitySelector({ onSelect }) {
     }, [searchText]);
 
     return (
-        <div className="city-selector">
+        <div className="city-selector" data-cy="city-selector">
             <label htmlFor="city-select">Select a city:</label>
             <input
                 type="text"

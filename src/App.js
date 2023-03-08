@@ -20,7 +20,7 @@ function App() {
   };
 
   return (
-      <div className="app">
+      <div className="app" data-cy="my-weather-app">
         <Header />
         <main className="main">
           <CitySelector onSelect={handleCitySelection} />

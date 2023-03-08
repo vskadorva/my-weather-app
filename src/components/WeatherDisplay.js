@@ -9,6 +9,7 @@ function WeatherDisplay({ weather }) {
 
     return (
         <>
+            <div data-cy="weather-display">
             <h2>{name}</h2>
             <p>{weatherData[0].description}</p>
             <p>
@@ -16,6 +17,7 @@ function WeatherDisplay({ weather }) {
                 {Math.round((temp - 273.15) * 1.8 + 32)}°F
             </p>
             <p>Humidity: {humidity}%</p>
+            </div>
         </>
     );
 }
