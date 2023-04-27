@@ -35,12 +35,12 @@
     "workbox-webpack-plugin": "^6.5.4"
   },
   "scripts": {
-    "start": "webpack serve",
+    "start": "node server.mjs",
+    "start:webpack": "webpack serve",
     "build": "webpack --mode=production --node-env=production",
     "test": "react-scripts test",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "server": "node server.mjs"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
