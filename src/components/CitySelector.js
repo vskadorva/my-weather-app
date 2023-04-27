@@ -1,30 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 function CitySelector({ onSelect }) {
-    const [searchText, setSearchText] = useState("");
+    const [searchText, setSearchText] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
     useEffect(() => {
-        let timeoutId;
+        const fetchCities = async () => {
+            const response = await fetch(`http://localhost:3001/search?q=${searchText}`);
+            const data = await response.json();
+            setSearchResults(data);
+        };
 
         if (searchText) {
-            timeoutId = setTimeout(async () => {
-                const response = await fetch(
-                    `https://api.openweathermap.org/geo/1.0/direct?q=${searchText}&limit=5&appid=${process.env.REACT_APP_API_KEY}`
-                );
-                const data = await response.json();
-                setSearchResults(data);
-            }, 500);
+            const timeoutId = setTimeout(fetchCities, 500);
+            return () => clearTimeout(timeoutId);
         } else {
             setSearchResults([]);
         }
-
-        return () => clearTimeout(timeoutId);
     }, [searchText]);
 
     return (
         <div className="city-selector" data-cy="city-selector">
-            <label htmlFor="city-select">Select a city:</label>
+            <label htmlFor="city-input">Select a city:</label>
             <input
                 type="text"
                 id="city-input"

@@ -14,19 +14,16 @@ body {
   color: #333;
 }
 
-/* Improve color contrast */
 .app {
   background-color: #fff;
   color: #000;
 }
 
-/* Add focus styles */
 :focus {
   outline: 2px solid #4b99d3;
   outline-offset: 4px;
 }
 
-/* Use semantic HTML */
 .header {
   background-color: #4b99d3;
   color: #fff;
@@ -53,7 +50,6 @@ body {
   width: 50%;
 }
 
-/* Add ARIA attributes */
 label {
   margin-bottom: 0.5rem;
 }
@@ -68,10 +64,6 @@ select {
   width: 100%;
 }
 
-select {
-  width: 100%;
-}
-
 .weather-display {
   text-align: center;
   width: 100%;
@@ -82,13 +74,14 @@ select {
 p {
   margin-bottom: 0.5rem;
 }
+
 .footer {
   margin-top: 2rem;
   text-align: center;
   color: #777;
 }
+
 @media (min-width: 600px) {
-  /* Use a responsive grid system */
   .app {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -126,7 +119,6 @@ p {
     font-size: 1.5rem;
   }
 
-  /* Adjust margins and padding for smaller screens */
   .main {
     padding: 0 1rem;
     text-align: center;
@@ -137,4 +129,3 @@ p {
     margin: 0;
   }
 }
-

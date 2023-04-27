@@ -6,29 +6,25 @@ import WeatherDisplay from "./components/WeatherDisplay";
 import "./App.css";
 
 function App() {
-  const [selectedCity, setSelectedCity] = useState("");
-  const [weather, setWeather] = useState(null);
+    const [weather, setWeather] = useState(null);
 
-  const handleCitySelection = async (value) => {
-    const [lat, lon] = value.split(",");
-    const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}`
+    const handleCitySelection = async (value) => {
+        const [lat, lon] = value.split(",");
+        const response = await fetch(`http://localhost:3001/weather?lat=${lat}&lon=${lon}`);
+        const data = await response.json();
+        setWeather(data);
+    };
+
+    return (
+        <div className="app" data-cy="my-weather-app">
+            <Header />
+            <main className="main">
+                <CitySelector onSelect={handleCitySelection} />
+                <WeatherDisplay weather={weather} />
+            </main>
+            <Footer />
+        </div>
     );
-    const data = await response.json();
-    setWeather(data);
-    setSelectedCity(data.name);
-  };
-
-  return (
-      <div className="app" data-cy="my-weather-app">
-        <Header />
-        <main className="main">
-          <CitySelector onSelect={handleCitySelection} />
-          <WeatherDisplay weather={weather} />
-        </main>
-        <Footer />
-      </div>
-  );
 }
 
 export default App;
