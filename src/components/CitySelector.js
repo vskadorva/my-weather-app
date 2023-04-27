@@ -41,8 +41,8 @@ function CitySelector({ onSelect }) {
                 <option value="" disabled>
                     Select a city
                 </option>
-                {searchResults.map(({ name, state, country, lat, lon }) => (
-                    <option key={`${name}-${state}-${country}`} value={`${lat},${lon}`}>
+                {searchResults.map(({ name, state, country, lat, lon }, index) => (
+                    <option key={`${name}-${state}-${country}-${index}`} value={`${lat},${lon}`}>
                         {name}, {state}, {country}
                     </option>
                 ))}
