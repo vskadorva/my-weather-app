@@ -6,7 +6,7 @@ function CitySelector({ onSelect }) {
 
     useEffect(() => {
         const fetchCities = async () => {
-            const response = await fetch(`http://localhost:3001/search?q=${searchText}`);
+            const response = await fetch(`https://pure-sea-84829.herokuapp.com/search?q=${searchText}`);
             const data = await response.json();
             setSearchResults(data);
         };

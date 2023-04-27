@@ -10,7 +10,7 @@ function App() {
 
     const handleCitySelection = async (value) => {
         const [lat, lon] = value.split(",");
-        const response = await fetch(`http://localhost:3001/weather?lat=${lat}&lon=${lon}`);
+        const response = await fetch(`https://pure-sea-84829.herokuapp.com/weather?lat=${lat}&lon=${lon}`);
         const data = await response.json();
         setWeather(data);
     };
