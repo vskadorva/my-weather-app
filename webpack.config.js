@@ -49,6 +49,11 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env": {
         REACT_APP_API_KEY: JSON.stringify(process.env.REACT_APP_API_KEY),
+        API_URL: JSON.stringify(
+            process.env.NODE_ENV === "production"
+                ? "https://pure-sea-84829.herokuapp.com"
+                : process.env.API_URL
+        )
       },
     }),
   ],
