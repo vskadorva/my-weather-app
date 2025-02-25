@@ -1,8 +1,11 @@
+import { terminalLog } from '../utils/axeLogging'
 describe('My weather app spec', () => {
   beforeEach(() => {
-    cy.visit('/')
+    cy.visit('/');
+    cy.injectAxe();
   })
   it('loads page', () => {
+    cy.checkA11y(null, null, terminalLog);
     cy.get('[data-cy="my-weather-app"]')
         .should('be.visible')
   })
