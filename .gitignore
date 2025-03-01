@@ -31,3 +31,10 @@ yarn-error.log*
 cypress/screenshots/
 cypress/videos/
 cypress/videos_e2e_ConFoo/
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
