@@ -1,0 +1,100 @@
+/* Button Component Styles */
+
+/* Base Button Styles */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  outline: none;
+  position: relative;
+  text-decoration: none;
+  gap: 8px;
+}
+
+/* Button Variants */
+.button--primary {
+  background-color: #3498db;
+  color: white;
+}
+
+.button--primary:hover:not(.button--disabled) {
+  background-color: #2980b9;
+}
+
+.button--secondary {
+  background-color: #f1f1f1;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.button--secondary:hover:not(.button--disabled) {
+  background-color: #e5e5e5;
+}
+
+/* Button Sizes */
+.button--small {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.button--medium {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.button--large {
+  padding: 12px 24px;
+  font-size: 16px;
+}
+
+/* Button States */
+.button--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.button--loading {
+  cursor: wait;
+}
+
+/* Button with Icon */
+.button--with-icon {
+  padding-left: 12px;
+}
+
+.button__icon,
+.button__loading-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button__text {
+  display: inline-block;
+}
+
+/* Animation for loading state */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.button--loading .button__loading-icon {
+  animation: spin 1s linear infinite;
+}
+
+/* Focus state */
+.button:focus:not(.button--disabled) {
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+}
+
+/* Active state */
+.button:active:not(.button--disabled) {
+  transform: translateY(1px);
+} 

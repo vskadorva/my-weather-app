@@ -5,11 +5,43 @@ describe('My weather app spec', () => {
     cy.injectAxe();
   })
   it('loads page', () => {
-    cy.checkA11y(null, null, terminalLog, true);
+
     cy.get('[data-cy="my-weather-app"]')
         .should('be.visible')
-  })
 
+  /**
+     * Runs accessibility checks using axe-core
+     * Parameters:
+     * - context: null (tests entire page) or CSS selector for specific element
+     * - options: null (uses defaults) or object with specific axe-core rules
+     * - terminalLog: callback function to format and display violations
+     * - true: continues test execution even if violations are found
+     * 
+     * Common violations checked:
+     * - WCAG 2.1 compliance
+     * - Color contrast
+     * - ARIA attributes
+     * - Keyboard navigation
+     * - Screen reader compatibility
+  */
+    cy.checkA11y(null, null, terminalLog, true);
+  })
+it('should validate accessibility based on European requirements', () => {
+  /**
+    * Parameters configured for WCAG 2.2 Level AA compliance
+  */
+ cy.checkA11y(null, {
+   runOnly: {
+     type: 'tag',
+     values: ['wcag2a', 'wcag2aa', 'wcag22a', 'wcag22aa']
+   },
+   rules: {
+     'color-contrast': { enabled: true },
+     'target-size': { enabled: true }, // WCAG 2.2 specific
+     'focus-order-semantics': { enabled: true }
+   }
+ }, terminalLog, true);
+})  
   it('shows correct header', () => {
     cy.get('[data-cy="header"]')
         .should('have.text', 'City Weather')
