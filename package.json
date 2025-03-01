@@ -19,15 +19,32 @@
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.20.2",
+    "@chromatic-com/storybook": "^3.2.4",
+    "@storybook/addon-essentials": "^8.5.8",
+    "@storybook/addon-interactions": "^8.5.8",
+    "@storybook/addon-onboarding": "^8.5.8",
+    "@storybook/blocks": "^8.5.8",
+    "@storybook/preset-create-react-app": "^8.5.8",
+    "@storybook/react": "^8.5.8",
+    "@storybook/react-webpack5": "^8.5.8",
+    "@storybook/test": "^8.5.8",
+    "@storybook/testing-library": "^0.2.2",
     "@webpack-cli/generators": "^3.0.1",
+    "axe-core": "^4.10.2",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.3",
-    "cypress": "^12.7.0",
+    "cypress": "^12.17.4",
+    "cypress-axe": "^1.6.0",
+    "eslint-plugin-storybook": "^0.11.3",
     "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.5.1",
     "mini-css-extract-plugin": "^2.7.2",
     "prettier": "^2.8.4",
+    "prop-types": "^15.8.1",
+    "storybook": "^8.5.8",
     "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
@@ -40,12 +57,15 @@
     "build": "webpack --mode=production --node-env=production",
     "test": "react-scripts test",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:storybook/recommended"
     ]
   },
   "browserslist": {

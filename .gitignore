@@ -24,3 +24,10 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea
+
+*storybook.log
+
+#cypress
+cypress/screenshots/
+cypress/videos/
+cypress/videos_e2e_ConFoo/

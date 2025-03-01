@@ -15,7 +15,10 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-
+import 'cypress-axe'
+import '../../src/App.css'
+import '../../src/index.css'
+import '../../src/components/CitySelector.css'
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
