@@ -21,8 +21,10 @@ describe('<Button /> component tests', () => {
         <Button variant="secondary">Secondary</Button>
       </>
     );
-    cy.get('[data-cy="button"]').first().should('have.class', 'button--primary');
-    cy.get('[data-cy="button"]').last().should('have.class', 'button--secondary');
+    cy.get('[data-cy="button"]').first()
+      .should('have.class', 'button--primary');
+    cy.get('[data-cy="button"]').last()
+      .should('have.class', 'button--secondary');
   });
 
   it('handles different sizes', () => {
@@ -33,9 +35,12 @@ describe('<Button /> component tests', () => {
         <Button size="large">Large</Button>
       </>
     );
-    cy.get('[data-cy="button"]').eq(0).should('have.class', 'button--small');
-    cy.get('[data-cy="button"]').eq(1).should('have.class', 'button--medium');
-    cy.get('[data-cy="button"]').eq(2).should('have.class', 'button--large');
+    cy.get('[data-cy="button"]').eq(0)
+      .should('have.class', 'button--small');
+    cy.get('[data-cy="button"]').eq(1)
+      .should('have.class', 'button--medium');
+    cy.get('[data-cy="button"]').eq(2)
+      .should('have.class', 'button--large');
   });
 
   it('handles disabled state', () => {
@@ -58,7 +63,8 @@ describe('<Button /> component tests', () => {
   it('handles icon', () => {
     const icon = <span data-cy="test-icon">👍</span>;
     cy.mount(<Button icon={icon}>With Icon</Button>);
-    cy.get('[data-cy="button"]').should('have.class', 'button--with-icon');
+    cy.get('[data-cy="button"]')
+      .should('have.class', 'button--with-icon');
     cy.get('[data-cy="test-icon"]').should('exist');
     cy.get('.button__text').should('contain', 'With Icon');
   });
@@ -83,9 +89,12 @@ describe('<Button /> component tests', () => {
         <Button type="button">Button</Button>
       </>
     );
-    cy.get('[data-cy="button"]').eq(0).should('have.attr', 'type', 'submit');
-    cy.get('[data-cy="button"]').eq(1).should('have.attr', 'type', 'reset');
-    cy.get('[data-cy="button"]').eq(2).should('have.attr', 'type', 'button');
+    cy.get('[data-cy="button"]').eq(0)
+      .should('have.attr', 'type', 'submit');
+    cy.get('[data-cy="button"]').eq(1)
+      .should('have.attr', 'type', 'reset');
+    cy.get('[data-cy="button"]').eq(2)
+      .should('have.attr', 'type', 'button');
   });
 
   it('handles custom data-cy attribute', () => {

@@ -16,12 +16,14 @@ const setupNodeEvents = (on, config) => {
 }
 
 module.exports = defineConfig({
+  projectId: "9cw2in",
   e2e: {
     "baseUrl" : "https://vskadorva.github.io/my-weather-app/",
     setupNodeEvents,
   },
 
   component: {
+    specPattern: "src/components/**/*.cy.js",
     devServer: {
       framework: "react",
       bundler: "webpack",
