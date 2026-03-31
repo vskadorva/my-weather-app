@@ -2,7 +2,8 @@
 import { defineConfig, devices } from '@playwright/experimental-ct-react';
 
 export default defineConfig({
-  testDir: './pw/ct',
+  testDir: './pw',
+  testMatch: ['ct/**/*.spec.jsx', 'wick-a11y/example-5-component.spec.jsx'],
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,

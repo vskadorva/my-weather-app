@@ -16,13 +16,14 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 import 'cypress-axe'
+import 'wick-a11y'
 import '../../src/App.css'
 import '../../src/index.css'
 import '../../src/components/CitySelector.css'
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-import { mount } from 'cypress/react18'
+import { mount } from 'cypress/react'
 
 Cypress.Commands.add('mount', mount)
 

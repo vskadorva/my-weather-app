@@ -15,6 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-import "cypress-axe"
+import 'cypress-axe'
+import 'wick-a11y'
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

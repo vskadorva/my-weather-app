@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CitySelector from "./components/CitySelector";
@@ -9,6 +9,12 @@ import "./App.css";
 function App() {
     const [weather, setWeather] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const modalTriggerRef = useRef(null);
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        modalTriggerRef.current?.focus();
+    };
 
     const handleCitySelection = async (value) => {
         const [lat, lon] = value.split(",");
@@ -25,16 +31,23 @@ function App() {
                 <WeatherDisplay weather={weather} />
             </main>
             <Footer />
-            <button 
-                style={{ background: '#777', color: '#999' }} 
-                onClick={() => setIsModalOpen(true)}>
+            <button
+                ref={modalTriggerRef}
+                type="button"
+                data-cy="modal-open-trigger"
+                style={{ background: '#777', color: '#999' }}
+                onClick={() => setIsModalOpen(true)}
+            >
                 Open Modal
             </button>
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                <div className="modal-title">Welcome to Weather App!</div>
+            <Modal isOpen={isModalOpen} onClose={closeModal}>
+                <div className="modal-title" id="modal-title">Welcome to Weather App!</div>
                 <h3>About</h3>
-                <img src="/weather-icon.png" />
+                <img src="/weather-icon.png" alt="" />
                 <p>This is a simple weather application that shows you weather information for different cities.</p>
+                <button type="button" onClick={closeModal}>
+                    Got it
+                </button>
             </Modal>
         </div>
     );
