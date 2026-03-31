@@ -1,6 +1,37 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
 
+const isCI = !!process.env.CI;
+const storybookServerOnly = process.env.PW_STORYBOOK_ONLY === '1';
+
+const webpackServer = {
+  command: 'npm run start:webpack',
+  url: 'http://127.0.0.1:8080/my-weather-app/',
+  reuseExistingServer: !isCI,
+  timeout: isCI ? 300_000 : 120_000,
+};
+
+const storybookServer = {
+  command: 'npm run storybook -- --host 127.0.0.1 --ci',
+  url: 'http://127.0.0.1:6006',
+  reuseExistingServer: !isCI,
+  timeout: isCI ? 300_000 : 180_000,
+};
+
+/**
+ * In CI, starting webpack + Storybook together often exceeds timeouts (two cold compiles).
+ * GitHub Actions runs E2E first (webpack only), then Storybook tests with PW_STORYBOOK_ONLY=1.
+ * Locally, both start unless you set PW_STORYBOOK_ONLY=1 for a Storybook-only run.
+ */
+let webServer;
+if (storybookServerOnly) {
+  webServer = [storybookServer];
+} else if (isCI) {
+  webServer = [webpackServer];
+} else {
+  webServer = [webpackServer, storybookServer];
+}
+
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
@@ -15,20 +46,7 @@ export default defineConfig({
     baseURL: 'http://127.0.0.1:8080/my-weather-app',
     trace: 'on-first-retry',
   },
-  webServer: [
-    {
-      command: 'npm run start:webpack',
-      url: 'http://127.0.0.1:8080/my-weather-app',
-      reuseExistingServer: !process.env.CI,
-      timeout: 120 * 1000,
-    },
-    {
-      command: 'npm run storybook',
-      url: 'http://127.0.0.1:6006',
-      reuseExistingServer: !process.env.CI,
-      timeout: 180 * 1000,
-    },
-  ],
+  webServer,
   projects: [
     {
       name: 'chromium',

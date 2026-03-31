@@ -17,8 +17,12 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: npx playwright test
+    - name: Run Playwright tests (app — webpack dev server only)
+      run: npx playwright test --ignore-project=chromium-storybook
+    - name: Run Playwright tests (Storybook)
+      run: npx playwright test --project=chromium-storybook
+      env:
+        PW_STORYBOOK_ONLY: '1'
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
