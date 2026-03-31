@@ -6,7 +6,7 @@ import { assertA11yViolations } from '../helpers/logViolations.js';
 test('checks modal accessibility', async ({ page }) => {
   await page.goto('/');
 
-  await page.getByRole('button', { name: 'Open Modal' }).click();
+  await page.locator('[data-cy="modal-open-trigger"]').click();
   await expect(page.locator('[data-cy="modal-overlay"]')).toBeVisible();
 
   const results = await new AxeBuilder({ page })
@@ -16,24 +16,23 @@ test('checks modal accessibility', async ({ page }) => {
   assertA11yViolations(results);
 });
 
-test.fixme('modal traps focus and closes on Escape', async ({ page }) => {
+test('modal traps focus and closes on Escape', async ({ page }) => {
   await page.goto('/');
 
-  await page.getByRole('button', { name: 'Open Modal' }).click();
+  await page.locator('[data-cy="modal-open-trigger"]').click();
   await expect(page.locator('[data-cy="modal-overlay"]')).toBeVisible();
 
-  await expect(page.locator('.modal-close')).toBeFocused();
+  await expect(page.locator('[data-cy="modal-close-btn"]')).toBeFocused();
 
   await page.keyboard.press('Tab');
-  const focused = page.locator(':focus');
-  await expect(focused).toBeVisible();
+  await expect(
+    page.locator('[data-cy="modal-overlay"]').locator(':focus')
+  ).toBeVisible();
 
   await page.keyboard.press('Escape');
-  await expect(page.locator('[data-cy="modal-overlay"]')).not.toBeVisible();
+  await expect(page.locator('[data-cy="modal-overlay"]')).toHaveCount(0);
 
-  await expect(
-    page.getByRole('button', { name: 'Open Modal' })
-  ).toBeFocused();
+  await expect(page.locator('[data-cy="modal-open-trigger"]')).toBeFocused();
 
   const results = await new AxeBuilder({ page }).analyze();
   assertA11yViolations(results);

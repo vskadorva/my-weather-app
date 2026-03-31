@@ -39,8 +39,8 @@
     "axe-core": "^4.10.2",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.3",
-    "cypress": "^12.17.4",
-    "cypress-axe": "^1.6.0",
+    "cypress": "^15.13.0",
+    "cypress-axe": "^1.7.0",
     "eslint-plugin-storybook": "^0.11.3",
     "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.0",
@@ -52,7 +52,8 @@
     "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.11.1",
+    "webpack-dev-server": "^5.2.0",
+    "wick-a11y": "^3.0.1",
     "workbox-webpack-plugin": "^6.5.4"
   },
   "scripts": {
@@ -67,7 +68,9 @@
     "test:pw": "playwright test",
     "test:pw:match-cypress": "PW_STRICT_A11Y=false playwright test",
     "test:pw:ui": "playwright test --ui --headed",
-    "test:pw:ct": "playwright test -c playwright-ct.config.js"
+    "test:pw:ct": "playwright test -c playwright-ct.config.js",
+    "cypress:wick": "cypress run --e2e --spec 'cypress/e2e/wick-a11y/**/*.cy.js'",
+    "cypress:wick:component": "cypress run --component --spec 'cypress/component/wick-a11y/**/*.cy.js'"
   },
   "eslintConfig": {
     "extends": [

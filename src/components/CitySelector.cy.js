@@ -8,8 +8,8 @@ describe('<CitySelector />', () => {
     cy.window().then((win) => {
       win.process = {
         env: {
-          API_URL: Cypress.env('API_URL')
-        }
+          API_URL: Cypress.expose('API_URL'),
+        },
       };
     });
     cy.injectAxe();

@@ -36,7 +36,8 @@ if (storybookServerOnly) {
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  testDir: './pw/tests',
+  testDir: './pw',
+  testMatch: ['tests/**/*.spec.js', 'wick-a11y/**/*.spec.js'],
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
@@ -51,21 +52,33 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-      testIgnore: '**/a11y-storybook.spec.js',
+      testIgnore: [
+        '**/a11y-storybook.spec.js',
+        '**/wick-a11y/example-4-storybook.spec.js',
+      ],
     },
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
-      testIgnore: '**/a11y-storybook.spec.js',
+      testIgnore: [
+        '**/a11y-storybook.spec.js',
+        '**/wick-a11y/example-4-storybook.spec.js',
+      ],
     },
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
-      testIgnore: '**/a11y-storybook.spec.js',
+      testIgnore: [
+        '**/a11y-storybook.spec.js',
+        '**/wick-a11y/example-4-storybook.spec.js',
+      ],
     },
     {
       name: 'chromium-storybook',
-      testMatch: '**/a11y-storybook.spec.js',
+      testMatch: [
+        '**/a11y-storybook.spec.js',
+        '**/wick-a11y/example-4-storybook.spec.js',
+      ],
       use: {
         ...devices['Desktop Chrome'],
         baseURL: 'http://127.0.0.1:6006',
