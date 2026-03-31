@@ -18,7 +18,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests (app — webpack dev server only)
-      run: npx playwright test --ignore-project=chromium-storybook
+      run: npx playwright test --project=chromium
     - name: Run Playwright tests (Storybook)
       run: npx playwright test --project=chromium-storybook
       env:
